@@ -7,7 +7,7 @@ import {
   Link
 } from "react-router-dom";
 import './App.css';
-import Recipe from './Recipe'
+// import Recipe from './Recipe'
 
 
 const APP_ID = "879706d9";
@@ -63,26 +63,35 @@ class Breakfast extends React.Component {
     this.searchBkfst = this.searchBkfst.bind(this);
   }
 
-async getBkfst() {
-  try {
-    const res = await axios.get(URL);
-    this.setState({recipes: res.data});
-  } catch(e) {
-    console.error(e);
-  }
-}
+// async getBkfst() {
+//   try {
+//     const res = await axios.get(URL);
+//     this.setState({recipes: res.data});
+//   } catch(e) {
+//     console.error(e);
+//   }
+// }
 
 async searchBkfst(e) {
   e.preventDefault();
 
-  const { label, image, ingredientLines } = this.state;
+  // const { label, image, ingredientLines } = this.state;
 
-  const recipe = { label, image, ingredientLines };
+  // const recipe = { label, image, ingredientLines };
+
+  try {
+    const res = await axios.get(URL);
+    const data = await res.data
+    console.log(data);
+    this.setState({ recipes: data})
+  } catch (e) {
+    console.log(e.message);
+  }
 }
 
-componentDidMount() {
-  this.getBkfst();
-}
+// componentDidMount() {
+//   this.searchBkfst();
+// }
 
 
   render() {
@@ -90,25 +99,20 @@ componentDidMount() {
       <div className="breakfast-div">
           <h1>Keto Kitchen</h1>
           <h3>Breakfast Recipes</h3>
+
           <form onSubmit={this.searchBkfst} className="bkfst-search">
             <input 
             className="bkfst-input" 
             type="text"
-            value={search}
-            onChange={updateSearch} />
-            <button classname="bkfst-button" type="submit">Search Recipes</button>
+            // value={search}
+            // onChange={updateSearch} 
+            />
+            <button className="bkfst-button" type="submit">Search Recipes</button>
           </form>
-         {recipes.map (recipe => (
-           <Recipe 
-           key={recipes.recipe.label}
-           title={recipes.recipe.label}
-           carbs={recipes.recipe.cal}
-           ingredients={recipes.recipe.ingredients}
-           />
-         ))}
       </div>
     );
   }
 }
-
+  
+    
 export default App;
