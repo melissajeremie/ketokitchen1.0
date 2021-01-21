@@ -10,24 +10,24 @@ class Lunch extends React.Component {
       super(props);
       this.state = {}
       this.handleSubmit = this.handleSubmit.bind(this);
-      this.getSearch = this.getSearch.bind(this);
+    //   this.getSearch = this.getSearch.bind(this);
       this.updateSearch= this.updateSearch.bind(this);
     }
   
-    // async getBkfst() {
-    //   try {
-    //     const res = await axios.get(`https://api.edamam.com/search?q=breakfast&diet=low-carb&high-protein&app_id=${APP_ID}&app_key=${APP_KEY}`);
-    //     const bfast = await res.data;
-    //     this.setState({ recipes: [bfast.hits] });
+    async getLunch() {
+      try {
+        const res = await axios.get(`https://api.edamam.com/search?q=salad&diet=low-carb&app_id=${APP_ID}&app_key=${APP_KEY}`);
+        const data = await res.data;
+        this.setState({ recipes: data.hits });
   
-    //   } catch(e) {
-    //     console.error(e);
-    //   }
-    // }
+      } catch(e) {
+        console.error(e);
+      }
+    }
   
-    // componentDidMount() {
-    //   this.getBkfst();
-    // }
+    componentDidMount() {
+      this.getLunch();
+    }
   
     updateSearch(e) {
       e.preventDefault();
@@ -38,20 +38,19 @@ class Lunch extends React.Component {
   
     }
     
-    getSearch(e) {
-      e.preventDefault();
+    // getSearch(e) {
+    //   e.preventDefault();
       
     
-      this.setState( {})
-      }
-  
-    // &mealType=Breakfast
+    //   this.setState( {})
+    //   }
+      
   
   async handleSubmit(event) {
     event.preventDefault();
-    let query = event.target.value
+    let query = "salmon"
     try {
-      const res = await axios.get(`https://api.edamam.com/search?q=${query}&diet=low-carb&high-protein&app_id=${APP_ID}&app_key=${APP_KEY}`);
+      const res = await axios.get(`https://api.edamam.com/search?q=${query}&diet=low-carb&app_id=${APP_ID}&app_key=${APP_KEY}`);
       const data = await res.data
       console.log(data.hits);
       this.setState({ recipes: data.hits})
@@ -66,14 +65,14 @@ class Lunch extends React.Component {
       return (
   
         <div className="lunch-div">
-            <h1>Keto Kitchen</h1>
+            <h2>Lunch Recipes</h2>
   
-            <form onSubmit={this.getSearch}
+            <form onSubmit={this.handleSubmit}
             className="lunch-search">
               <input 
               className="lunch-input" 
               type="text"
-              value={this.search}
+              value=""
               onChange={this.updateSearch} 
               />
               <button className="lunch-button" type="submit">Search</button>

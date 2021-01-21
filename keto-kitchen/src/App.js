@@ -22,7 +22,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-      <div>
+      <div className="nav">
 
         <ul>
           <li>
@@ -38,7 +38,7 @@ class App extends React.Component {
             <Link to="/dinner">Dinner</Link>
           </li>
         </ul>
-
+      <h1>Keto Kitchen</h1>
         <Switch>
           <Route path="/breakfast">
             <Breakfast />
@@ -63,8 +63,9 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home-div">
-          <h1>Keto Kitchen</h1>
-          <h2>"Low" carb recipes for every meal</h2>
+          <h2>Welcome to the Keto Kitchen!</h2>
+          <h3>Where you can find low-carb recipes for every meal</h3>
+          <p>But I'm using the free version of this API so...not really haha</p>
       </div>
     );
   }

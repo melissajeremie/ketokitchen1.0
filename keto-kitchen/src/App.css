@@ -1,4 +1,43 @@
-.App {
-  min-height: 100vh;
-  background-image: linear-gradient(pink 30%, purple 30%, lightblue 40%);
+/* .App {
+ display: flex;
+} */
+
+.nav li {
+  display: inline;
+  padding: 5%;
+ 
+  text-decoration: none;
+  
+}
+
+.nav ul {
+  text-align: center;
+}
+
+.nav h1 {
+  text-align: center;
+}
+
+.breakfast-div {
+  background-color: rgb(186, 226, 186);
+}
+/* .recipe-div {
+  text-align: center;
+} */
+
+.recipe-div ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-div li {
+  padding: 0.25%;
+}
+
+.lunch-div {
+  background-color: rgb(212, 143, 186);
+}
+
+.din-div {
+  background-color: rgb(151, 189, 219);
 }

@@ -10,24 +10,24 @@ class Dinner extends React.Component {
       super(props);
       this.state = {}
       this.handleSubmit = this.handleSubmit.bind(this);
-      this.getSearch = this.getSearch.bind(this);
+    //   this.getSearch = this.getSearch.bind(this);
       this.updateSearch= this.updateSearch.bind(this);
     }
   
-    // async getBkfst() {
-    //   try {
-    //     const res = await axios.get(`https://api.edamam.com/search?q=breakfast&diet=low-carb&high-protein&app_id=${APP_ID}&app_key=${APP_KEY}`);
-    //     const bfast = await res.data;
-    //     this.setState({ recipes: [bfast.hits] });
+    async getDinner() {
+      try {
+        const res = await axios.get(`https://api.edamam.com/search?q=chicken&diet=low-carb&app_id=${APP_ID}&app_key=${APP_KEY}`);
+        const data = await res.data;
+        this.setState({ recipes: data.hits });
   
-    //   } catch(e) {
-    //     console.error(e);
-    //   }
-    // }
+      } catch(e) {
+        console.error(e);
+      }
+    }
   
-    // componentDidMount() {
-    //   this.getBkfst();
-    // }
+    componentDidMount() {
+      this.getDinner();
+    }
   
     updateSearch(e) {
       e.preventDefault();
@@ -38,20 +38,19 @@ class Dinner extends React.Component {
   
     }
     
-    getSearch(e) {
-      e.preventDefault();
+    // getSearch(e) {
+    //   e.preventDefault();
       
     
-      this.setState( {})
-      }
-  
-    // &mealType=Breakfast
+    //   this.setState( {})
+    //   }
+      
   
   async handleSubmit(event) {
     event.preventDefault();
-    const query = event.target.value
+    let query = "beef"
     try {
-      const res = await axios.get(`https://api.edamam.com/search?q=${query}&diet=low-carb&high-protein&app_id=${APP_ID}&app_key=${APP_KEY}`);
+      const res = await axios.get(`https://api.edamam.com/search?q=${query}&diet=low-carb&app_id=${APP_ID}&app_key=${APP_KEY}`);
       const data = await res.data
       console.log(data.hits);
       this.setState({ recipes: data.hits})
@@ -66,14 +65,14 @@ class Dinner extends React.Component {
       return (
   
         <div className="din-div">
-            <h1>Keto Kitchen</h1>
+            <h2>Dinner Recipes</h2>
   
-            <form onSubmit={this.getSearch}
+            <form onSubmit={this.handleSubmit}
             className="din-search">
               <input 
               className="din-input" 
               type="text"
-              value={this.search}
+              value=""
               onChange={this.updateSearch} 
               />
               <button className="din-button" type="submit">Search</button>
