@@ -62,16 +62,30 @@ class Breakfast extends React.Component {
     super(props);
     this.state = {}
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.search = this.search.bind(this);
-    this.updateSearch= this.updateSearch.bind(this);
-    this.query = this.query.bind(this);
+    // this.search = this.search.bind(this);
+    // this.updateSearch= this.updateSearch.bind(this);
   }
+
+  // updateSearch(e) {
+  //   this.setState( { search: e.target.value });
+    
+  //   console.log(search)
+  // }
+  
+  // getSearch(e) {
+  //   e.preventDefault();
+  
+  //   this.setState( {})
+  //   }
+
+  // &mealType=Breakfast
 
 async handleSubmit(event) {
   event.preventDefault();
+  const query = event.target.value;
 
   try {
-    const res = await axios.get(`https://api.edamam.com/search?q=${query}&diet=low-carb&high-protein&mealType=Breakfast&app_id=${APP_ID}&app_key=${APP_KEY}`);
+    const res = await axios.get(`https://api.edamam.com/search?q=${query}&diet=low-carb&high-protein&app_id=${APP_ID}&app_key=${APP_KEY}`);
     const data = await res.data
     console.log(data.hits);
     this.setState({ recipes: data.hits})
@@ -79,19 +93,6 @@ async handleSubmit(event) {
     console.log(e.message);
   }
 }
-
-updateSearch(e) {
-  this.setState( { search: e.target.value });
-  
-  console.log(search)
-}
-
-getSearch(e) {
-  e.preventDefault();
-
-  this.setState( {query: search})
-  }
-
 
   render() {
     return (
@@ -103,8 +104,8 @@ getSearch(e) {
             <input 
             className="bkfst-input" 
             type="text"
-            value={this.search}
-            onChange={this.updateSearch} 
+            value=""
+            // onChange={this.updateSearch} 
             />
             <button className="bkfst-button" type="submit">Search Recipes</button>
           </form>
