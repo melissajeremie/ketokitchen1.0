@@ -62,27 +62,44 @@ class Breakfast extends React.Component {
     super(props);
     this.state = {}
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.search = this.search.bind(this);
-    // this.updateSearch= this.updateSearch.bind(this);
+    this.getSearch = this.getSearch.bind(this);
+    this.updateSearch= this.updateSearch.bind(this);
   }
 
-  // updateSearch(e) {
-  //   this.setState( { search: e.target.value });
-    
-  //   console.log(search)
-  // }
-  
-  // getSearch(e) {
-  //   e.preventDefault();
-  
-  //   this.setState( {})
+  // async getBkfst() {
+  //   try {
+  //     const res = await axios.get(`https://api.edamam.com/search?q=breakfast&diet=low-carb&high-protein&app_id=${APP_ID}&app_key=${APP_KEY}`);
+  //     const bfast = await res.data;
+  //     this.setState({ recipes: [bfast.hits] });
+
+  //   } catch(e) {
+  //     console.error(e);
   //   }
+  // }
+
+  // componentDidMount() {
+  //   this.getBkfst();
+  // }
+
+  updateSearch(e) {
+    e.preventDefault();
+
+    const search = e.target.value
+    
+    console.log(search)
+  }
+  
+  getSearch(e) {
+    e.preventDefault();
+  
+    this.setState( {})
+    }
 
   // &mealType=Breakfast
 
 async handleSubmit(event) {
   event.preventDefault();
-  const query = event.target.value;
+  const query = "egg"
 
   try {
     const res = await axios.get(`https://api.edamam.com/search?q=${query}&diet=low-carb&high-protein&app_id=${APP_ID}&app_key=${APP_KEY}`);
@@ -94,8 +111,11 @@ async handleSubmit(event) {
   }
 }
 
+
   render() {
+
     return (
+
       <div className="breakfast-div">
           <h1>Keto Kitchen</h1>
 
@@ -104,8 +124,8 @@ async handleSubmit(event) {
             <input 
             className="bkfst-input" 
             type="text"
-            value=""
-            // onChange={this.updateSearch} 
+            value={this.search}
+            onChange={this.updateSearch} 
             />
             <button className="bkfst-button" type="submit">Search Recipes</button>
           </form>
@@ -117,7 +137,7 @@ async handleSubmit(event) {
              title={recipe.recipe.label } 
              carbs={ recipe.recipe.totalNutrients.CHOCDF.quantity } 
              image={recipe.recipe.image}
-             ingredients={recipe.recipe.ingredientLines} />
+             ingredients={recipe.recipe.ingredients} />
           ))}
       </div>
     );
