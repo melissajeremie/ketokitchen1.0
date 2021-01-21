@@ -5,7 +5,7 @@ import Recipe from './Recipe'
 const APP_ID = "879706d9";
 const APP_KEY = "44acc469b344fb4332aa8c272ec92c00";
 
-class Dinner extends React.Component {
+class Breakfast extends React.Component {
     constructor(props) {
       super(props);
       this.state = {}
@@ -49,7 +49,7 @@ class Dinner extends React.Component {
   
   async handleSubmit(event) {
     event.preventDefault();
-    const query = event.target.value
+    let query = "egg"
     try {
       const res = await axios.get(`https://api.edamam.com/search?q=${query}&diet=low-carb&high-protein&app_id=${APP_ID}&app_key=${APP_KEY}`);
       const data = await res.data
@@ -65,18 +65,18 @@ class Dinner extends React.Component {
   
       return (
   
-        <div className="din-div">
+        <div className="breakfast-div">
             <h1>Keto Kitchen</h1>
   
             <form onSubmit={this.getSearch}
-            className="din-search">
+            className="bkfst-search">
               <input 
-              className="din-input" 
+              className="bkfst-input" 
               type="text"
               value={this.search}
               onChange={this.updateSearch} 
               />
-              <button className="din-button" type="submit">Search</button>
+              <button className="bkfst-button" type="submit">Search Recipes</button>
             </form>
             
             {
@@ -93,4 +93,4 @@ class Dinner extends React.Component {
     }
   }
 
-export default Dinner;
+export default Breakfast;
