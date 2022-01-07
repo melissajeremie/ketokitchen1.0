@@ -65,7 +65,7 @@ class Home extends React.Component {
       <div className="home-div">
           <h2>Welcome to the Keto Kitchen!</h2>
           <h3>Where you can find low-carb recipes for every meal</h3>
-          <p>But I'm using the free version of this API so...not really haha</p>
+          <p>But only in theory, until I upgrade the API</p>
       </div>
     );
   }

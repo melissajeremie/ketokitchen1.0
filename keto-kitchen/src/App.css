@@ -21,9 +21,10 @@
 .breakfast-div {
   background-color: rgb(186, 226, 186);
 }
-/* .recipe-div {
+.recipe-div {
   text-align: center;
-} */
+  padding-bottom: .25%;
+}
 
 .recipe-div ul {
   display: flex;
@@ -31,7 +32,7 @@
 }
 
 .recipe-div li {
-  padding: 0.25%;
+  padding: 0.30%;
 }
 
 .lunch-div {
